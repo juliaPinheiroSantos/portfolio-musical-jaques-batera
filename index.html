@@ -6,7 +6,6 @@
     <meta name="description" content="Portfólio de Jaques Batera - Baterista, Fundador da Banda Cia de Jesus. Mais de 40 anos de Reggae Gospel.">
     <title>Jaques Batera | Reggae Gospel Oficial</title>
     
-    <!-- Tipografia do Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -30,7 +29,8 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
-        body { font-family: var(--font-body); background-color: var(--bg-light); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
+        html, body { overflow-x: hidden; width: 100%; }
+        body { font-family: var(--font-body); background-color: var(--bg-light); color: var(--text-main); line-height: 1.6; }
 
         /* Classes Utilitárias */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
@@ -153,7 +153,10 @@
 
         /* Responsividade */
         @media(max-width: 768px) {
-            .sobre-grid { grid-template-columns: 1fr; }
+            /* Adicionado padding maior nas margens do celular e um leve padding extra no texto */
+            .container { padding: 0 30px; } 
+            .sobre-texto { padding: 0 5px; }
+            .sobre-grid { grid-template-columns: 1fr; gap: 30px; }
             .hero-content h1 { font-size: 3.5rem; }
             .nav-links { display: none; }
             .videos-container { grid-template-columns: 1fr; }
@@ -162,7 +165,6 @@
 </head>
 <body>
 
-    <!-- NAVEGAÇÃO -->
     <nav>
         <div class="nav-container">
             <a href="#hero" class="logo">Jaques <span>Batera</span></a>
@@ -177,7 +179,6 @@
         </div>
     </nav>
 
-    <!-- HEADER / HERO -->
     <header id="hero">
         <div class="hero-content reveal">
             <h1>Jaques Batera</h1>
@@ -187,7 +188,6 @@
         </div>
     </header>
 
-    <!-- SOBRE MIM -->
     <section id="sobre" class="container reveal">
         <div class="sobre-grid">
             <div class="sobre-img">
@@ -206,7 +206,6 @@
         </div>
     </section>
 
-    <!-- CIA DE JESUS -->
     <section id="banda">
         <div class="container reveal">
             <div class="banda-content">
@@ -219,13 +218,11 @@
             
             <div class="banda-cards">
                 <div class="b-card">
-                    <!-- Extensão .png mantida pois vi no seu código anterior -->
                     <img src="assets/images/DVD 30 Anos.png" alt="DVD 30 Anos" class="lightbox-trigger">
                     <h3>Retorno: DVD 30 Anos</h3>
                     <p>Gravado em 2022 na Church City (Anápolis-GO), celebrando nossa história.</p>
                 </div>
                 <div class="b-card">
-                    <!-- Extensão .jpg adicionada -->
                     <img src="assets/images/Álbum Na Terra Brasilis.jpg" alt="Álbum Na Terra Brasilis" class="lightbox-trigger">
                     <h3>Álbum Quatro</h3>
                     <p>Lançamento pela Gravadora MKM do Senador Magno Malta.</p>
@@ -239,12 +236,10 @@
         </div>
     </section>
 
-    <!-- GALERIA DE MÍDIAS -->
     <section id="galeria">
         <div class="container reveal">
             <h2 class="section-title">Memórias & <span>Acervo</span></h2>
             <div class="gallery-grid">
-                <!-- ATENÇÃO: Todas as imagens abaixo receberam a extensão .jpg -->
                 <div class="gallery-item">
                     <img src="assets/images/Revista CD 4.png" loading="lazy" alt="Revista CD 4" class="lightbox-trigger">
                     <div class="gallery-caption">Lançamento do CD 'Quatro' pela Gravadora MKM</div>
@@ -293,16 +288,13 @@
         </div>
     </section>
 
-    <!-- VÍDEOS & DISCOGRAFIA (Corrigido para abrir no Lightbox com tamanho real) -->
     <section id="midia" class="reveal">
         <div class="container">
             <h2 class="section-title">Som & <span>Movimento</span></h2>
             
             <div class="videos-container">
                 <div>
-                    <!-- Usando o atributo data-video para passar o link pro JavaScript -->
                     <div class="video-box" data-video="assets/videos/cia de jesus - jô soares.mp4">
-                        <!-- Esta tag fica muda e serve só de "miniatura" -->
                         <video src="assets/videos/cia de jesus - jô soares.mp4#t=5" preload="metadata"></video>
                         <div class="play-icon">▶</div>
                     </div>
@@ -328,7 +320,6 @@
         </div>
     </section>
 
-    <!-- CONTATO -->
     <section id="contato" class="reveal">
         <div class="container">
             <h2 class="section-title" style="color: var(--bg-dark);">Vamos <span>Conversar?</span></h2>
@@ -342,22 +333,18 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
-        <p>&copy; <script>document.write(new Date().getFullYear())</script> Jaques Batera – Reggae Gospel desde 1983.</p>
+        <p>© <script>document.write(new Date().getFullYear())</script> Jaques Batera – Reggae Gospel desde 1983.</p>
     </footer>
 
-    <!-- ESTRUTURA DO LIGHTBOX (Escondida por padrão) -->
     <div id="lightbox">
-        <span class="close-lightbox">&times;</span>
+        <span class="close-lightbox">×</span>
         <div class="lightbox-content"></div>
     </div>
 
-    <!-- JAVASCRIPT -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
-            // 1. ANIMAÇÃO DE SCROLL (Reveal)
             const reveals = document.querySelectorAll('.reveal');
             const revealOnScroll = () => {
                 const windowHeight = window.innerHeight;
@@ -371,25 +358,21 @@
             window.addEventListener('scroll', revealOnScroll);
             revealOnScroll();
 
-            // 2. LÓGICA DO LIGHTBOX (Abrir imagens e vídeos por cima)
             const lightbox = document.getElementById('lightbox');
             const lightboxContent = document.querySelector('.lightbox-content');
             const closeBtn = document.querySelector('.close-lightbox');
 
-            // Função genérica para fechar o Lightbox e parar o vídeo
             const closeLightbox = () => {
                 lightbox.classList.remove('active');
-                lightboxContent.innerHTML = ''; // Esvazia o modal (isso para o vídeo)
+                lightboxContent.innerHTML = ''; 
             };
 
             closeBtn.addEventListener('click', closeLightbox);
             
-            // Fechar ao clicar fora da imagem/vídeo
             lightbox.addEventListener('click', (e) => {
                 if (e.target === lightbox) closeLightbox();
             });
 
-            // Adiciona evento de clique em TODAS as imagens com a classe .lightbox-trigger
             document.querySelectorAll('.lightbox-trigger').forEach(img => {
                 img.addEventListener('click', () => {
                     lightboxContent.innerHTML = `<img src="${img.src}" alt="${img.alt}">`;
@@ -397,12 +380,9 @@
                 });
             });
 
-            // Adiciona evento de clique nos blocos de VÍDEO
             document.querySelectorAll('.video-box').forEach(videoBox => {
                 videoBox.addEventListener('click', () => {
-                    // Pega o caminho do vídeo do atributo "data-video"
                     const videoSrc = videoBox.getAttribute('data-video');
-                    // Injeta a tag <video> com controles ativados (autoplay opcional)
                     lightboxContent.innerHTML = `
                         <video src="${videoSrc}" controls autoplay style="width: 100%; border-radius: 10px;"></video>
                     `;
