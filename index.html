@@ -61,7 +61,6 @@
         .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.3s; text-transform: uppercase; }
         .nav-links a:hover { color: var(--gospel-gold); }
 
-        /* CORREÇÃO DO HERO: Caminho da imagem local configurado aqui */
         #hero { 
             height: 100vh; 
             background: linear-gradient(rgba(26,26,26,0.8), rgba(26,26,26,0.9)), url('assets/images/hero-bg.jpg') center/cover; 
@@ -73,13 +72,27 @@
         .hero-content p { font-size: 1.2rem; font-style: italic; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
 
         /* =========================================
-           3. SOBRE MIM
+           3. SOBRE MIM (Atualizado com Mídias Duplas)
         ========================================= */
         #sobre { padding: 100px 0; background-color: var(--bg-light); }
-        .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-        .sobre-img img { width: 100%; border-radius: 15px; box-shadow: -15px 15px 0 var(--reggae-green); border: 2px solid var(--text-main); }
-        .sobre-texto p { margin-bottom: 20px; font-size: 1.1rem; }
-        .quote-block { font-family: var(--font-title); font-size: 2rem; color: var(--reggae-red); margin: 30px 0; border-left: 5px solid var(--gospel-gold); padding-left: 20px; line-height: 1.2; }
+        
+        /* Alinhamento ao topo para que a foto não fique descendo caso o texto seja curto */
+        .sobre-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: start; }
+        
+        /* Ajuste para acomodar a sombra sem quebrar a margem */
+        .sobre-media { display: flex; flex-direction: column; gap: 30px; padding-left: 15px; padding-bottom: 15px; }
+        
+        .media-foto { width: 100%; border-radius: 15px; box-shadow: -15px 15px 0 var(--reggae-green); border: 2px solid var(--text-main); }
+        
+        /* O vídeo vertical ganha uma largura menor (65%) para não ficar muito alto e não quebrar o layout */
+        .media-video { width: 65%; margin: 0 auto; aspect-ratio: 9/16; border-radius: 15px; box-shadow: -15px 15px 0 var(--reggae-yellow); border: 2px solid var(--text-main); }
+        
+        .sobre-texto p { margin-bottom: 20px; font-size: 1.1rem; text-align: justify; }
+        .quote-block { font-family: var(--font-title); font-size: 2rem; color: var(--reggae-red); margin: 30px 0; border-left: 5px solid var(--gospel-gold); padding-left: 20px; line-height: 1.2; text-align: left; }
+
+        /* Link especial da Adriana Moreno */
+        .text-link-video { color: var(--reggae-red); font-weight: 700; text-decoration: none; border-bottom: 2px solid var(--reggae-red); transition: all 0.3s ease; cursor: pointer; }
+        .text-link-video:hover { color: var(--gospel-gold); border-bottom-color: var(--gospel-gold); background: rgba(227, 36, 43, 0.1); padding: 0 3px; border-radius: 3px; }
 
         /* =========================================
            4. A BANDA CIA DE JESUS
@@ -92,18 +105,7 @@
         .b-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; aspect-ratio: 1/1; object-fit: cover;}
 
         /* =========================================
-           5. LINHA DO TEMPO
-        ========================================= */
-        #trajetoria { padding: 100px 0; background-color: var(--bg-light); }
-        .timeline { display: flex; overflow-x: auto; padding: 20px 0; gap: 20px; scroll-snap-type: x mandatory; }
-        .timeline::-webkit-scrollbar { height: 8px; }
-        .timeline::-webkit-scrollbar-thumb { background: var(--reggae-green); border-radius: 10px; }
-        .time-card { min-width: 300px; background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); scroll-snap-align: start; border-left: 5px solid var(--reggae-red); }
-        .time-card h3 { font-family: var(--font-title); color: var(--bg-dark); font-size: 2rem; }
-        .time-card h4 { color: var(--reggae-green); margin-bottom: 10px; }
-
-        /* =========================================
-           6. GALERIA (GRID RESPONSIVO)
+           5. GALERIA (GRID RESPONSIVO)
         ========================================= */
         #galeria { padding: 100px 0; background-color: var(--bg-dark); }
         #galeria .section-title { color: var(--text-light); }
@@ -114,27 +116,24 @@
         .gallery-item:hover .gallery-caption { bottom: 0; }
 
         /* =========================================
-           7. VÍDEOS & DISCOGRAFIA (Corrigido tamanho)
+           6. VÍDEOS & DISCOGRAFIA
         ========================================= */
         #midia { padding: 100px 0; background-color: var(--bg-light); text-align: center; }
         .videos-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px; align-items: start; }
         
-        /* Nova capa de vídeo clicável */
         .video-box { position: relative; background: #000; border-radius: 15px; border: 3px solid var(--gospel-gold); overflow: hidden; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.3s; }
         .video-box:hover { transform: scale(1.02); }
         
-        /* A tag video agora usa 100% da largura, e a altura se ajusta sozinha sem forçar cortes */
         .video-box video { width: 100%; height: auto; display: block; opacity: 0.7; transition: opacity 0.3s; }
         .video-box:hover video { opacity: 1; }
         
-        /* Ícone de play sobre o vídeo */
         .play-icon { position: absolute; width: 70px; height: 70px; background: rgba(218, 165, 32, 0.9); color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; pointer-events: none; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
         
         .discografia-box { background: var(--bg-dark); color: var(--text-light); padding: 50px; border-radius: 15px; display: inline-block; width: 100%; max-width: 800px; }
         .plataformas { margin-top: 20px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 
         /* =========================================
-           8. CONTATO E FOOTER
+           7. CONTATO E FOOTER
         ========================================= */
         #contato { padding: 80px 0; background-color: var(--reggae-green); color: var(--text-light); text-align: center; }
         .contato-info { font-size: 1.2rem; margin: 20px 0; }
@@ -142,21 +141,29 @@
         footer { background-color: var(--bg-dark); color: #888; text-align: center; padding: 20px 0; font-size: 0.9rem; border-top: 3px solid var(--reggae-red); }
 
         /* =========================================
-           9. LIGHTBOX (Modal para abrir Mídias)
+           8. LIGHTBOX (Modal para abrir Mídias)
         ========================================= */
         #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
         #lightbox.active { opacity: 1; visibility: visible; }
         .lightbox-content { max-width: 90%; max-height: 90vh; position: relative; }
-        .lightbox-content img, .lightbox-content video { max-width: 100%; max-height: 90vh; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5); display: block; margin: 0 auto; }
+        .lightbox-content img, .lightbox-content video { max-width: 100%; max-height: 90vh; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5); display: block; margin: 0 auto; outline: none; }
         .close-lightbox { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10000; transition: color 0.3s; }
         .close-lightbox:hover { color: var(--reggae-red); }
 
-        /* Responsividade */
+        /* =========================================
+           RESPONSIVIDADE E CORREÇÕES (MOBILE)
+        ========================================= */
         @media(max-width: 768px) {
-            /* Adicionado padding maior nas margens do celular e um leve padding extra no texto */
-            .container { padding: 0 30px; } 
-            .sobre-texto { padding: 0 5px; }
-            .sobre-grid { grid-template-columns: 1fr; gap: 30px; }
+            /* Garante área de respiro nas laterais e impede que o texto cole na tela */
+            .container { padding: 0 25px; } 
+            
+            /* Remove a quebra forçada da grade para alinhar tudo numa coluna */
+            .sobre-grid { grid-template-columns: 1fr; gap: 40px; }
+            
+            /* Reduzimos o sombreamento no celular para evitar que a margem invisível estoure a tela horizontalmente */
+            .media-foto { box-shadow: -8px 8px 0 var(--reggae-green); }
+            .media-video { width: 80%; box-shadow: -8px 8px 0 var(--reggae-yellow); }
+            
             .hero-content h1 { font-size: 3.5rem; }
             .nav-links { display: none; }
             .videos-container { grid-template-columns: 1fr; }
@@ -171,7 +178,6 @@
             <ul class="nav-links">
                 <li><a href="#sobre">Sobre Mim</a></li>
                 <li><a href="#banda">Cia de Jesus</a></li>
-                <li><a href="#trajetoria">Trajetória</a></li>
                 <li><a href="#galeria">Galeria</a></li>
                 <li><a href="#midia">Vídeos</a></li>
                 <li><a href="#contato">Contato</a></li>
@@ -190,18 +196,37 @@
 
     <section id="sobre" class="container reveal">
         <div class="sobre-grid">
-            <div class="sobre-img">
-                <img src="assets/images/Jaques Batera tocando bateria.jpeg" loading="lazy" alt="Jaques Batera tocando bateria" class="lightbox-trigger">
+            
+            <!-- COLUNA ESQUERDA: FOTO + VÍDEO VERTICAL -->
+            <div class="sobre-media">
+                <!-- Foto Principal -->
+                <img src="assets/images/Jaques Batera tocando bateria.jpeg" loading="lazy" alt="Jaques Batera tocando bateria" class="lightbox-trigger media-foto">
+                
+                <!-- Novo Vídeo Vertical (Reduzido e Clicável) -->
+                <!-- ATENÇÃO: Confirme se o nome do vídeo da Adriana Moreno na pasta assets/videos/ é "adriana-moreno.mp4". Se for outro nome, troque aqui nos 2 lugares. -->
+                <div class="video-box media-video" data-video="assets/videos/adriana-moreno.mp4">
+                    <video src="assets/videos/adriana moreno banda.mp4" preload="metadata" style="object-fit: cover;"></video>
+                    <div class="play-icon">▶</div>
+                </div>
             </div>
+
+            <!-- COLUNA DIREITA: TEXTO BIOGRÁFICO -->
             <div class="sobre-texto">
                 <h2 class="section-title" style="text-align: left;">Minha <span>Batida</span></h2>
                 <p>Graça e paz! Minha jornada com as baquetas começou lá atrás, em 1983, na Escola de Música Israel, sob a batuta do professor Max Teófilo. O que começou como curiosidade virou um chamado. Passei 4 anos na Banda Israel e depois caí na estrada com bandas de baile e na famosa casa Pigalle, onde tive a honra de acompanhar nomes como Nelson Ned, Vanderlei Cardoso e o Trio Iraquitam.</p>
+                
                 <p>Após três anos com a Banda Alkazar, decidi compartilhar o dom: montei minha própria escola de música e estúdio. Foram quatro anos dando aulas de bateria e participando de mais de 60 gravações de artistas do estado. Mas o Senhor tinha planos ainda mais ritmados para mim.</p>
+                
                 <div class="quote-block">
                     “De Pigalle ao Campo de Marte: minha bateria sempre anunciou o amor de Cristo.”
                 </div>
+                
                 <p>Em 1992, fundei a <strong>Cia de Jesus</strong>. Fomos pioneiros na música cristã nacional, misturando a riqueza da música mineira com o swing nordestino e o peso bom do reggae. Foram turnês por todo o Brasil, programas de TV (Rone Von, Sérgio Malandro e duas passagens inesquecíveis pelo Jô Soares) e três turnês internacionais pelos EUA e Canadá (2000, 2002 e 2006).</p>
-                <p>Tocar na Marcha para Jesus em São Paulo, no Campo de Marte, para mais de 1 milhão de pessoas, foi algo que marcou minha alma. Hoje, sigo atuando como baterista freelancer, acompanhando grandes ministérios como Cleber Lucas e Aline Barros, sabendo que cada virada de caixa é feita para a glória d’Ele.</p>
+                
+                <p>Tocar na Marcha para Jesus em São Paulo, no Campo de Marte, para mais de 1 milhão de pessoas, foi algo que marcou minha alma. Sabendo que cada virada de caixa é feita para a glória d’Ele, continuo trilhando meu caminho na música.</p>
+                
+                <!-- Texto atualizado com Link para o Vídeo -->
+                <p>Atualmente, acompanho como baterista a renomada cantora anapolina <a href="#" class="text-link-video" data-video="assets/videos/adriana-moreno.mp4">Adriana Moreno</a>.</p>
             </div>
         </div>
     </section>
@@ -345,6 +370,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             
+            // 1. Animação Scroll
             const reveals = document.querySelectorAll('.reveal');
             const revealOnScroll = () => {
                 const windowHeight = window.innerHeight;
@@ -358,6 +384,7 @@
             window.addEventListener('scroll', revealOnScroll);
             revealOnScroll();
 
+            // 2. Lightbox Modal Principal
             const lightbox = document.getElementById('lightbox');
             const lightboxContent = document.querySelector('.lightbox-content');
             const closeBtn = document.querySelector('.close-lightbox');
@@ -373,6 +400,7 @@
                 if (e.target === lightbox) closeLightbox();
             });
 
+            // Clique em Imagens Comuns
             document.querySelectorAll('.lightbox-trigger').forEach(img => {
                 img.addEventListener('click', () => {
                     lightboxContent.innerHTML = `<img src="${img.src}" alt="${img.alt}">`;
@@ -380,11 +408,26 @@
                 });
             });
 
+            // Clique nos Vídeos nas Caixas (Thumbnails)
             document.querySelectorAll('.video-box').forEach(videoBox => {
                 videoBox.addEventListener('click', () => {
                     const videoSrc = videoBox.getAttribute('data-video');
                     lightboxContent.innerHTML = `
-                        <video src="${videoSrc}" controls autoplay style="width: 100%; border-radius: 10px;"></video>
+                        <video src="${videoSrc}" controls autoplay></video>
+                    `;
+                    lightbox.classList.add('active');
+                });
+            });
+
+            // 3. Novo: Clique no Texto que abre o vídeo da Adriana Moreno
+            document.querySelectorAll('.text-link-video').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault(); // Impede que a tela pule pro topo
+                    const videoSrc = link.getAttribute('data-video');
+                    
+                    // Injeta e abre o modal idêntico ao comportamento das thumbails de vídeo
+                    lightboxContent.innerHTML = `
+                        <video src="${videoSrc}" controls autoplay></video>
                     `;
                     lightbox.classList.add('active');
                 });
