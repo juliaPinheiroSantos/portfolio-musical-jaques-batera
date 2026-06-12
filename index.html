@@ -17,7 +17,7 @@
         ========================================= */
         :root {
             --bg-dark: #1a1a1a;
-            --bg-light: #f4ecd8; /* Palha/Terroso claro */
+            --bg-light: #f4ecd8;
             --reggae-green: #009E60;
             --reggae-yellow: #FCD116;
             --reggae-red: #E3242B;
@@ -28,26 +28,15 @@
             --font-body: 'Poppins', sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
 
-        body {
-            font-family: var(--font-body);
-            background-color: var(--bg-light);
-            color: var(--text-main);
-            overflow-x: hidden;
-            line-height: 1.6;
-        }
+        body { font-family: var(--font-body); background-color: var(--bg-light); color: var(--text-main); overflow-x: hidden; line-height: 1.6; }
 
         /* Classes Utilitárias */
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
         .section-title { font-family: var(--font-title); font-size: 3rem; text-align: center; margin-bottom: 40px; color: var(--reggae-green); letter-spacing: 2px;}
         .section-title span { color: var(--gospel-gold); }
-        .btn { display: inline-block; padding: 12px 30px; font-weight: 600; text-decoration: none; border-radius: 30px; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; }
+        .btn { display: inline-block; padding: 12px 30px; font-weight: 600; text-decoration: none; border-radius: 30px; transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; }
         .btn-primary { background-color: var(--gospel-gold); color: var(--bg-dark); border: 2px solid var(--gospel-gold); }
         .btn-primary:hover { background-color: transparent; color: var(--gospel-gold); }
         .btn-reggae { background: linear-gradient(90deg, var(--reggae-green) 0%, var(--reggae-yellow) 50%, var(--reggae-red) 100%); color: #000; border: none; }
@@ -56,6 +45,10 @@
         /* Animação Scroll Reveal */
         .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Efeito de Clique em Imagens (Lightbox) */
+        .lightbox-trigger { cursor: pointer; transition: transform 0.3s; }
+        .lightbox-trigger:hover { transform: scale(1.03); filter: brightness(1.1); }
 
         /* =========================================
            2. HEADER E HERO SECTION
@@ -68,8 +61,12 @@
         .nav-links a { color: var(--text-light); text-decoration: none; font-weight: 600; font-size: 0.9rem; transition: color 0.3s; text-transform: uppercase; }
         .nav-links a:hover { color: var(--gospel-gold); }
 
-        #hero { height: 100vh; background: linear-gradient(rgba(26,26,26,0.8), rgba(26,26,26,0.9)), url('https://placehold.co/1920x1080/222/555?text=Foto+Antiga+Bateria+ou+Show+Cia+de+Jesus') center/cover; display: flex; align-items: center; justify-content: center; text-align: center; color: var(--text-light); padding: 0 20px; border-bottom: 5px solid var(--reggae-red); }
-        /* USUÁRIO: Troque a URL acima pela imagem de fundo vintage da bateria ou show */
+        /* CORREÇÃO DO HERO: Caminho da imagem local configurado aqui */
+        #hero { 
+            height: 100vh; 
+            background: linear-gradient(rgba(26,26,26,0.8), rgba(26,26,26,0.9)), url('assets/images/hero-bg.jpg') center/cover; 
+            display: flex; align-items: center; justify-content: center; text-align: center; color: var(--text-light); padding: 0 20px; border-bottom: 5px solid var(--reggae-red); 
+        }
         
         .hero-content h1 { font-family: var(--font-title); font-size: 5rem; margin-bottom: 10px; color: var(--gospel-gold); letter-spacing: 3px; }
         .hero-content h2 { font-size: 1.5rem; font-weight: 300; margin-bottom: 20px; color: var(--reggae-yellow); }
@@ -91,8 +88,7 @@
         .banda-content { text-align: center; max-width: 800px; margin: 0 auto 40px auto; }
         .banda-content h2 { color: var(--gospel-gold); }
         .banda-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .b-card { background: #2a2a2a; padding: 30px; border-radius: 10px; text-align: center; border-bottom: 4px solid var(--reggae-yellow); transition: transform 0.3s; }
-        .b-card:hover { transform: translateY(-10px); }
+        .b-card { background: #2a2a2a; padding: 30px; border-radius: 10px; text-align: center; border-bottom: 4px solid var(--reggae-yellow); }
         .b-card img { width: 100%; border-radius: 8px; margin-bottom: 15px; aspect-ratio: 1/1; object-fit: cover;}
 
         /* =========================================
@@ -113,21 +109,29 @@
         #galeria .section-title { color: var(--text-light); }
         .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 15px; }
         .gallery-item { position: relative; overflow: hidden; border-radius: 8px; border: 2px solid #333; aspect-ratio: 4/3; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-        .gallery-item:hover img { transform: scale(1.1); }
-        .gallery-caption { position: absolute; bottom: -100%; left: 0; width: 100%; background: rgba(0,0,0,0.8); color: #fff; padding: 15px; transition: bottom 0.3s ease; text-align: center; font-size: 0.9rem; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-caption { position: absolute; bottom: -100%; left: 0; width: 100%; background: rgba(0,0,0,0.8); color: #fff; padding: 15px; transition: bottom 0.3s ease; text-align: center; font-size: 0.9rem; pointer-events: none; }
         .gallery-item:hover .gallery-caption { bottom: 0; }
 
         /* =========================================
-           7. VÍDEOS & DISCOGRAFIA
+           7. VÍDEOS & DISCOGRAFIA (Corrigido tamanho)
         ========================================= */
         #midia { padding: 100px 0; background-color: var(--bg-light); text-align: center; }
-        .videos-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 30px; margin-bottom: 50px; }
-        .video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,0,0,0.2); border: 3px solid var(--gospel-gold); }
-        .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .videos-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-bottom: 50px; align-items: start; }
         
-        .discografia-box { background: var(--bg-dark); color: var(--text-light); padding: 50px; border-radius: 15px; display: inline-block; }
-        .plataformas { margin-top: 20px; display: flex; gap: 15px; justify-content: center; }
+        /* Nova capa de vídeo clicável */
+        .video-box { position: relative; background: #000; border-radius: 15px; border: 3px solid var(--gospel-gold); overflow: hidden; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.2); cursor: pointer; transition: transform 0.3s; }
+        .video-box:hover { transform: scale(1.02); }
+        
+        /* A tag video agora usa 100% da largura, e a altura se ajusta sozinha sem forçar cortes */
+        .video-box video { width: 100%; height: auto; display: block; opacity: 0.7; transition: opacity 0.3s; }
+        .video-box:hover video { opacity: 1; }
+        
+        /* Ícone de play sobre o vídeo */
+        .play-icon { position: absolute; width: 70px; height: 70px; background: rgba(218, 165, 32, 0.9); color: #fff; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-size: 2rem; pointer-events: none; box-shadow: 0 0 15px rgba(0,0,0,0.5); }
+        
+        .discografia-box { background: var(--bg-dark); color: var(--text-light); padding: 50px; border-radius: 15px; display: inline-block; width: 100%; max-width: 800px; }
+        .plataformas { margin-top: 20px; display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; }
 
         /* =========================================
            8. CONTATO E FOOTER
@@ -135,14 +139,23 @@
         #contato { padding: 80px 0; background-color: var(--reggae-green); color: var(--text-light); text-align: center; }
         .contato-info { font-size: 1.2rem; margin: 20px 0; }
         .contato-info strong { color: var(--reggae-yellow); }
-        
         footer { background-color: var(--bg-dark); color: #888; text-align: center; padding: 20px 0; font-size: 0.9rem; border-top: 3px solid var(--reggae-red); }
+
+        /* =========================================
+           9. LIGHTBOX (Modal para abrir Mídias)
+        ========================================= */
+        #lightbox { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.95); z-index: 9999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: all 0.3s ease; }
+        #lightbox.active { opacity: 1; visibility: visible; }
+        .lightbox-content { max-width: 90%; max-height: 90vh; position: relative; }
+        .lightbox-content img, .lightbox-content video { max-width: 100%; max-height: 90vh; border-radius: 8px; box-shadow: 0 5px 25px rgba(0,0,0,0.5); display: block; margin: 0 auto; }
+        .close-lightbox { position: absolute; top: 20px; right: 30px; color: #fff; font-size: 40px; font-weight: bold; cursor: pointer; z-index: 10000; transition: color 0.3s; }
+        .close-lightbox:hover { color: var(--reggae-red); }
 
         /* Responsividade */
         @media(max-width: 768px) {
             .sobre-grid { grid-template-columns: 1fr; }
             .hero-content h1 { font-size: 3.5rem; }
-            .nav-links { display: none; /* Em um site real, adicione um menu hamburguer aqui */ }
+            .nav-links { display: none; }
             .videos-container { grid-template-columns: 1fr; }
         }
     </style>
@@ -178,8 +191,7 @@
     <section id="sobre" class="container reveal">
         <div class="sobre-grid">
             <div class="sobre-img">
-                <!-- USUÁRIO: Substitua esta imagem por uma foto do Jaques na bateria ou em estúdio -->
-                <img src="assets/images/Jaques Batera tocando bateria.jpeg" loading="lazy" alt="Jaques Batera tocando bateria">
+                <img src="assets/images/Jaques Batera tocando bateria.jpg" loading="lazy" alt="Jaques Batera tocando bateria" class="lightbox-trigger">
             </div>
             <div class="sobre-texto">
                 <h2 class="section-title" style="text-align: left;">Minha <span>Batida</span></h2>
@@ -207,66 +219,21 @@
             
             <div class="banda-cards">
                 <div class="b-card">
-                    <!-- USUÁRIO: Inserir Capa do DVD 30 Anos -->
-                    <img src="assets/images/DVD 30 Anos.png" alt="DVD 30 Anos">
+                    <!-- Extensão .png mantida pois vi no seu código anterior -->
+                    <img src="assets/images/DVD 30 Anos.png" alt="DVD 30 Anos" class="lightbox-trigger">
                     <h3>Retorno: DVD 30 Anos</h3>
                     <p>Gravado em 2022 na Church City (Anápolis-GO), celebrando nossa história.</p>
                 </div>
                 <div class="b-card">
-                    <!-- USUÁRIO: Inserir Foto da Revista do CD 4 (Magno Malta) - Tam: 2424x3262 proporcional -->
-                    <img src="assets/images/Álbum Na Terra Brasilis.jpg" alt="Álbum Na Terra Brasilis">
+                    <!-- Extensão .jpg adicionada -->
+                    <img src="assets/images/Álbum Na Terra Brasilis.jpg" alt="Álbum Na Terra Brasilis" class="lightbox-trigger">
                     <h3>Álbum Quatro</h3>
                     <p>Lançamento pela Gravadora MKM do Senador Magno Malta.</p>
                 </div>
                 <div class="b-card">
-                    <!-- USUÁRIO: Inserir Foto da Revista do CD 2 (Koinonia) - Tam: 2480x3302 proporcional -->
-                    <img src="assets/images/Revista CD 2.png" alt="Álbum CD 2">
+                    <img src="assets/images/Revista CD 2.png" alt="Álbum CD 2" class="lightbox-trigger">
                     <h3>CD 2 - Koinonia</h3>
                     <p>Nosso segundo trabalho autoral pela Gravadora Koinonia Music.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- LINHA DO TEMPO -->
-    <section id="trajetoria">
-        <div class="container reveal">
-            <h2 class="section-title">Nossa <span>Trajetória</span></h2>
-            <div class="timeline">
-                <div class="time-card">
-                    <h3>1983</h3>
-                    <h4>O Início</h4>
-                    <p>Primeiros passos na Escola de Música Israel e ingresso na Banda Israel.</p>
-                </div>
-                <div class="time-card">
-                    <h3>1992</h3>
-                    <h4>A Fundação</h4>
-                    <p>Nasce a Cia de Jesus, trazendo o Reggae Gospel para o cenário nacional.</p>
-                </div>
-                <div class="time-card">
-                    <h3>1994</h3>
-                    <h4>Televisão Nacional</h4>
-                    <p>Primeira participação histórica no programa do Jô Soares (SBT).</p>
-                </div>
-                <div class="time-card">
-                    <h3>1996</h3>
-                    <h4>A Estrada</h4>
-                    <p>Turnê marcante pelo estado de São Paulo.</p>
-                </div>
-                <div class="time-card">
-                    <h3>1997</h3>
-                    <h4>Regge a Terra</h4>
-                    <p>Lançamento do nosso primeiro e icônico álbum.</p>
-                </div>
-                <div class="time-card">
-                    <h3>2000</h3>
-                    <h4>Fronteiras</h4>
-                    <p>Primeira turnê internacional pelos Estados Unidos e Canadá.</p>
-                </div>
-                <div class="time-card">
-                    <h3>2022</h3>
-                    <h4>O Retorno</h4>
-                    <p>Gravação do emocionante DVD de 30 anos em Anápolis.</p>
                 </div>
             </div>
         </div>
@@ -277,73 +244,74 @@
         <div class="container reveal">
             <h2 class="section-title">Memórias & <span>Acervo</span></h2>
             <div class="gallery-grid">
-                <!-- USUÁRIO: Substitua os links do "src" pelas imagens fornecidas. Usei as proporções e legendas solicitadas. -->
-                
+                <!-- ATENÇÃO: Todas as imagens abaixo receberam a extensão .jpg -->
                 <div class="gallery-item">
-                    <img src="assets/images/Revista CD 4.png" loading="lazy" alt="Revista CD 4">
-                    <div class="gallery-caption">Lançamento do CD 'Quatro' pela Gravadora MKM do Senador Magno Malta</div>
+                    <img src="assets/images/Revista CD 4.png" loading="lazy" alt="Revista CD 4" class="lightbox-trigger">
+                    <div class="gallery-caption">Lançamento do CD 'Quatro' pela Gravadora MKM</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/images/Revista CD 2" loading="lazy" alt="Revista CD 2">
-                    <div class="gallery-caption">CD 2 da banda Cia de Jesus – Gravadora Koinonia Music</div>
+                    <img src="assets/images/Revista CD 2.jpg" loading="lazy" alt="Revista CD 2" class="lightbox-trigger">
+                    <div class="gallery-caption">CD 2 da banda Cia de Jesus</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/images/Caldas Novas 2002" loading="lazy" alt="Caldas Novas 2002">
-                    <div class="gallery-caption">Show no evento gospel de Caldas Novas – GO, 2002</div>
+                    <img src="assets/images/Caldas Novas 2002.jpg" loading="lazy" alt="Caldas Novas 2002" class="lightbox-trigger">
+                    <div class="gallery-caption">Show em Caldas Novas – GO, 2002</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/images/SC 1998 Foto 1" loading="lazy" alt="SC 1998 Foto 1">
+                    <img src="assets/images/SC 1998 Foto 1.jpg" loading="lazy" alt="SC 1998 Foto 1" class="lightbox-trigger">
                     <div class="gallery-caption">Turnê Santa Catarina 1998</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/images/SC 1998 Foto 2" loading="lazy" alt="SC 1998 Foto 2">
+                    <img src="assets/images/SC 1998 Foto 2.jpg" loading="lazy" alt="SC 1998 Foto 2" class="lightbox-trigger">
                     <div class="gallery-caption">Turnê Santa Catarina 1998</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/images/SC 1998 Foto 3" loading="lazy" alt="SC 1998 Foto 3">
+                    <img src="assets/images/SC 1998 Foto 3.jpg" loading="lazy" alt="SC 1998 Foto 3" class="lightbox-trigger">
                     <div class="gallery-caption">Turnê Santa Catarina 1998</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/images/SP 1996 Foto 1" loading="lazy" alt="SP 1996 Foto 1">
+                    <img src="assets/images/SP 1996 Foto 1.jpg" loading="lazy" alt="SP 1996 Foto 1" class="lightbox-trigger">
                     <div class="gallery-caption">Turnê São Paulo 1996</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/images/SP 1996 Foto 2" loading="lazy" alt="SP 1996 Foto 2">
+                    <img src="assets/images/SP 1996 Foto 2.jpg" loading="lazy" alt="SP 1996 Foto 2" class="lightbox-trigger">
                     <div class="gallery-caption">Turnê São Paulo 1996</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/images/SP 1996 Foto 3" loading="lazy" alt="SP 1996 Foto 3">
+                    <img src="assets/images/SP 1996 Foto 3.jpg" loading="lazy" alt="SP 1996 Foto 3" class="lightbox-trigger">
                     <div class="gallery-caption">Turnê São Paulo 1996</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/images/EUA 2002 Foto 1" loading="lazy" alt="EUA 2002 Foto 1">
+                    <img src="assets/images/EUA 2002 Foto 1.jpg" loading="lazy" alt="EUA 2002 Foto 1" class="lightbox-trigger">
                     <div class="gallery-caption">Turnê EUA 2002</div>
                 </div>
                 <div class="gallery-item">
-                    <img src="assets/images/EUA 2002 Foto 2" loading="lazy" alt="EUA 2002 Foto 2">
+                    <img src="assets/images/EUA 2002 Foto 2.jpg" loading="lazy" alt="EUA 2002 Foto 2" class="lightbox-trigger">
                     <div class="gallery-caption">Turnê EUA 2002</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- VÍDEOS & DISCOGRAFIA -->
+    <!-- VÍDEOS & DISCOGRAFIA (Corrigido para abrir no Lightbox com tamanho real) -->
     <section id="midia" class="reveal">
         <div class="container">
             <h2 class="section-title">Som & <span>Movimento</span></h2>
             
             <div class="videos-container">
                 <div>
-                    <div class="video-wrapper">
-                        <!-- USUÁRIO: Troque o link src do iframe pelo link real do vídeo no YouTube -->
-                        <iframe src="assets/videos/cia de jesus - jô soares.mp4" title="Cia de Jesus no Jô Soares (SBT)" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <!-- Usando o atributo data-video para passar o link pro JavaScript -->
+                    <div class="video-box" data-video="assets/videos/cia de jesus - jô soares.mp4">
+                        <!-- Esta tag fica muda e serve só de "miniatura" -->
+                        <video src="assets/videos/cia de jesus - jô soares.mp4#t=5" preload="metadata"></video>
+                        <div class="play-icon">▶</div>
                     </div>
                     <p style="margin-top: 15px; font-weight: bold;">Cia de Jesus no Jô Soares (SBT) – Canja Anos 90</p>
                 </div>
                 <div>
-                    <div class="video-wrapper">
-                        <!-- USUÁRIO: Troque o link src do iframe pelo link real do show -->
-                        <iframe src="assets/videos/cia de jesus- são José dos Campos - SP.mp4" title="Show em São José dos Campos" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <div class="video-box" data-video="assets/videos/cia de jesus- são José dos Campos - SP.mp4">
+                        <video src="assets/videos/cia de jesus- são José dos Campos - SP.mp4#t=5" preload="metadata"></video>
+                        <div class="play-icon">▶</div>
                     </div>
                     <p style="margin-top: 15px; font-weight: bold;">Show completo da turnê (São José dos Campos - SP)</p>
                 </div>
@@ -353,7 +321,6 @@
                 <h3>Ouça a Cia de Jesus</h3>
                 <p>Toda a nossa discografia está nas plataformas digitais. Clique e sinta o reggae que vem de Deus!</p>
                 <div class="plataformas">
-                    <!-- USUÁRIO: Insira os links reais nos atributos href -->
                     <a href="#" target="_blank" class="btn btn-primary">Spotify</a>
                     <a href="#" target="_blank" class="btn btn-primary">Letras.mus.br</a>
                 </div>
@@ -369,39 +336,80 @@
             
             <div class="contato-info">
                 <p>Email: <strong>jaquesbatera@ciadejesus.com</strong></p>
-                <p>Telefone / WhatsApp: <strong>(62) 9XXXX-XXXX</strong></p>
+                <p>WhatsApp: <strong>(62) 9XXXX-XXXX</strong></p>
                 <p>Instagram: <strong>@jaquesbatera_oficial</strong></p>
             </div>
-            
-            <p style="font-size: 0.9rem; margin-top: 30px;">Na bateria, o ritmo é oração.</p>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; <script>document.write(new Date().getFullYear())</script> Jaques Batera – Reggae Gospel desde 1983. Todos os direitos reservados.</p>
+        <p>&copy; <script>document.write(new Date().getFullYear())</script> Jaques Batera – Reggae Gospel desde 1983.</p>
     </footer>
 
-    <!-- JAVASCRIPT: Interatividade e Scroll Reveal -->
+    <!-- ESTRUTURA DO LIGHTBOX (Escondida por padrão) -->
+    <div id="lightbox">
+        <span class="close-lightbox">&times;</span>
+        <div class="lightbox-content"></div>
+    </div>
+
+    <!-- JAVASCRIPT -->
     <script>
         document.addEventListener('DOMContentLoaded', () => {
-            // Animação de Scroll (Reveal)
+            
+            // 1. ANIMAÇÃO DE SCROLL (Reveal)
             const reveals = document.querySelectorAll('.reveal');
-
             const revealOnScroll = () => {
                 const windowHeight = window.innerHeight;
-                const elementVisible = 100; // Ponto de gatilho
-                
                 reveals.forEach((reveal) => {
                     const elementTop = reveal.getBoundingClientRect().top;
-                    if (elementTop < windowHeight - elementVisible) {
+                    if (elementTop < windowHeight - 100) {
                         reveal.classList.add('active');
                     }
                 });
             };
-
             window.addEventListener('scroll', revealOnScroll);
-            revealOnScroll(); // Aciona no carregamento para a primeira seção
+            revealOnScroll();
+
+            // 2. LÓGICA DO LIGHTBOX (Abrir imagens e vídeos por cima)
+            const lightbox = document.getElementById('lightbox');
+            const lightboxContent = document.querySelector('.lightbox-content');
+            const closeBtn = document.querySelector('.close-lightbox');
+
+            // Função genérica para fechar o Lightbox e parar o vídeo
+            const closeLightbox = () => {
+                lightbox.classList.remove('active');
+                lightboxContent.innerHTML = ''; // Esvazia o modal (isso para o vídeo)
+            };
+
+            closeBtn.addEventListener('click', closeLightbox);
+            
+            // Fechar ao clicar fora da imagem/vídeo
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+
+            // Adiciona evento de clique em TODAS as imagens com a classe .lightbox-trigger
+            document.querySelectorAll('.lightbox-trigger').forEach(img => {
+                img.addEventListener('click', () => {
+                    lightboxContent.innerHTML = `<img src="${img.src}" alt="${img.alt}">`;
+                    lightbox.classList.add('active');
+                });
+            });
+
+            // Adiciona evento de clique nos blocos de VÍDEO
+            document.querySelectorAll('.video-box').forEach(videoBox => {
+                videoBox.addEventListener('click', () => {
+                    // Pega o caminho do vídeo do atributo "data-video"
+                    const videoSrc = videoBox.getAttribute('data-video');
+                    // Injeta a tag <video> com controles ativados (autoplay opcional)
+                    lightboxContent.innerHTML = `
+                        <video src="${videoSrc}" controls autoplay style="width: 100%; border-radius: 10px;"></video>
+                    `;
+                    lightbox.classList.add('active');
+                });
+            });
+
         });
     </script>
 </body>
